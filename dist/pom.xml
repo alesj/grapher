@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- Parent -->
+    <parent>
+        <groupId>org.jboss.grapher</groupId>
+        <artifactId>grapher-build</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>grapher-web</artifactId>
+    <packaging>war</packaging>
+    <name>JBoss Grapher Web</name>
+    <url>http://www.jboss.org</url>
+    <description>JBoss Grapher Renderer</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.grapher</groupId>
+            <artifactId>grapher-renderer</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.grapher</groupId>
+            <artifactId>grapher-modules</artifactId>
+        </dependency>
+    </dependencies>
+</project>

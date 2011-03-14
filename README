@@ -1,0 +1,7 @@
+JBoss Grapher Web Application
+
+===============================================================
+
+Render any graph dependencies using JGraph library.
+Renderer module is generic, while other should be made custom.
+e.g. JBoss Modules, JBoss MSC, Microcontainer, ...

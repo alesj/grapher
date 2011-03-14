@@ -1,0 +1,187 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>5</version>
+    </parent>
+    <groupId>org.jboss.grapher</groupId>
+    <artifactId>grapher-build</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>JBoss Grapher Build</name>
+    <url>http://www.jboss.org/jbossas</url>
+    <description>The JBoss Grapher - Visualization tool</description>
+    <scm>
+        <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/scanning/trunk/
+        </connection>
+        <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/scanning/trunk/
+        </developerConnection>
+        <url>http://viewvc.jboss.org/cgi-bin/viewvc.cgi/jbossas/projects/scanning/trunk/</url>
+    </scm>
+
+    <modules>
+        <module>renderer</module>
+        <module>modules</module>
+        <module>services</module>
+        <module>dist</module>
+    </modules>
+
+    <properties>
+        <version.javax.servlet>2.5</version.javax.servlet>
+        <version.jgraph>5.12.4</version.jgraph>
+        <version.batik>1.6</version.batik>
+        <version.metainf>1.1</version.metainf>
+        <version.org.jboss.common>2.2.17.GA</version.org.jboss.common>
+        <version.org.jboss.modules>1.0.0.Beta15</version.org.jboss.modules>
+        <version.org.jboss.msc>1.0.0.Beta6</version.org.jboss.msc>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <tagBase>https://svn.jboss.org/repos/jbossas/projects/scanning/tags</tagBase>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-idea-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                    <includes>
+                        <include>org/jboss/test/**/*TestCase.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <!-- The parent pom manages the inter-dependencies of the modules. -->
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.grapher</groupId>
+                <artifactId>grapher-renderer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.grapher</groupId>
+                <artifactId>grapher-modules</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Batik + JGraph -->
+
+            <dependency>
+                <groupId>batik</groupId>
+                <artifactId>batik-svg-dom</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+            <dependency>
+                <groupId>batik</groupId>
+                <artifactId>batik-svggen</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+            <dependency>
+                <groupId>batik</groupId>
+                <artifactId>batik-util</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+            <dependency>
+                <groupId>batik</groupId>
+                <artifactId>batik-dom</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+            <dependency>
+                <groupId>batik</groupId>
+                <artifactId>batik-awt-util</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+            <dependency>
+                <groupId>batik</groupId>
+                <artifactId>batik-xml</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jgraph</groupId>
+                <artifactId>jgraph</artifactId>
+                <version>${version.jgraph}</version>
+            </dependency>
+            <!-- Uncomment this + place JGraphLayout in your local repo -->
+            <!--<dependency>-->
+            <!--<groupId>com.jgraph</groupId>-->
+            <!--<artifactId>jgraphlayout</artifactId>-->
+            <!--<version>1.4.3</version>-->
+            <!--<optional>true</optional>-->
+            <!--</dependency>-->
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${version.javax.servlet}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss</groupId>
+                <artifactId>jboss-common-core</artifactId>
+                <version>${version.org.jboss.common}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.kohsuke.metainf-services</groupId>
+                <artifactId>metainf-services</artifactId>
+                <version>${version.metainf}</version>
+                <optional>true</optional>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.modules</groupId>
+                <artifactId>jboss-modules</artifactId>
+                <version>${version.org.jboss.modules}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.msc</groupId>
+                <artifactId>jboss-msc</artifactId>
+                <version>${version.org.jboss.msc}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
+
