@@ -21,12 +21,12 @@
  */
 package org.jboss.grapher;
 
-import org.jboss.grapher.map.DefaultDependencyFilterMapper;
-import org.jboss.grapher.map.DefaultDependencyTypeMapper;
 import org.jboss.grapher.graph.DependencyFilter;
 import org.jboss.grapher.graph.DependencyType;
 import org.jboss.grapher.graph.GraphCreator;
 import org.jboss.grapher.layout.GraphLayout;
+import org.jboss.grapher.map.DefaultDependencyFilterMapper;
+import org.jboss.grapher.map.DefaultDependencyTypeMapper;
 import org.jboss.grapher.map.DefaultGraphCreatorMapper;
 import org.jboss.grapher.map.DefaultGraphLayoutMapper;
 import org.jboss.grapher.map.DefaultRendererMapper;
@@ -45,7 +45,7 @@ public final class GrapherConstants {
     /**
      * The default format
      */
-    public static final String FORMAT = "png";
+    public static final String FORMAT = "gif";
 
     /**
      * The default creator mapper
