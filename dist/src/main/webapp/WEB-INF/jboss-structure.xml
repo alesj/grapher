@@ -1,0 +1,10 @@
+<jboss-structure>
+    <deployment>
+        <dependencies>
+            <module name="system"/>
+            <module name="org.jboss.msc"/>
+            <module name="org.jboss.modules"/>
+            <module name="org.jboss.common-core"/>
+        </dependencies>
+    </deployment>
+</jboss-structure>

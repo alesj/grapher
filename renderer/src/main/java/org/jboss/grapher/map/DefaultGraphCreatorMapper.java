@@ -48,7 +48,7 @@ public class DefaultGraphCreatorMapper implements GraphComponentMapper<GraphCrea
 
     public GraphCreator mapComponent(HttpServletRequest request) {
         String ext = request.getParameter("extension");
-        String value = request.getParameter("initialValue");
+        String value = request.getParameter("initial-value");
         return mapComponent(ext, value);
     }
 
