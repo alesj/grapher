@@ -33,7 +33,7 @@ import org.kohsuke.MetaInfServices;
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
 @MetaInfServices(GraphCreatorExt.class)
-public class ThisModuleGrapherCreator extends SingleModuleGrapherCreator {
+public class ThisModuleGrapherCreator extends TreeModuleGrapherCreator {
 
     @Override
     protected ModuleIdentifier toName(String value) {

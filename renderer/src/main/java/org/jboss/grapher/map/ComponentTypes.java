@@ -22,7 +22,6 @@
 package org.jboss.grapher.map;
 
 import org.jboss.grapher.graph.DependencyTarget;
-import org.jboss.logging.Logger;
 
 import java.awt.*;
 
@@ -31,10 +30,7 @@ import java.awt.*;
  *
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
-@SuppressWarnings("unchecked")
 public final class ComponentTypes {
-    private static final Logger log = Logger.getLogger(ComponentTypes.class);
-
     /**
      * Get mapped color.
      *
@@ -45,6 +41,6 @@ public final class ComponentTypes {
         if (target == null)
             return Color.BLACK;
 
-        return Color.YELLOW;
+        return Color.BLUE;
     }
 }

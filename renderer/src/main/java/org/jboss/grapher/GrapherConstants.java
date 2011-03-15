@@ -45,7 +45,7 @@ public final class GrapherConstants {
     /**
      * The default format
      */
-    public static final String FORMAT = "gif";
+    public static final String FORMAT = "jpg";
 
     /**
      * The default creator mapper

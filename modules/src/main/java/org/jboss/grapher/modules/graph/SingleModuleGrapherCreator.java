@@ -42,6 +42,7 @@ public class SingleModuleGrapherCreator extends SingleGraphCreator<ModuleIdentif
 
     @Override
     protected ModuleIdentifier toName(String value) {
+        log.info("Current module: " + value);
         return ModuleIdentifier.create(value);
     }
 

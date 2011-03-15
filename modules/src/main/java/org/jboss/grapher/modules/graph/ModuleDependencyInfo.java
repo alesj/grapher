@@ -29,7 +29,6 @@ import org.jboss.modules.Module;
 import org.jboss.modules.ModuleIdentifier;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -68,7 +67,6 @@ public class ModuleDependencyInfo implements DependencyInfo<ModuleIdentifier> {
     public Set<DependencyItem<ModuleIdentifier>> getDependencies(DependencyType type) {
         try {
             Object[] dependecies = (Object[]) getDependencies.invoke(module);
-            log.info("Dependencies: " + Arrays.toString(dependecies));
             if (dependecies == null || dependecies.length == 0)
                 return Collections.emptySet();
 

@@ -37,14 +37,15 @@ import java.util.Set;
  */
 public abstract class TreeGraphCreator<T> extends AbstractGraphCreator<T> {
     private T root;
-    private Set<Object> visited;
+    private Set<T> visited;
 
     public TreeGraphCreator() {
-        visited = new HashSet<Object>();
+        visited = new HashSet<T>();
     }
 
     public void initialValue(final String value) {
         root = toName(value);
+        log.info("Root value: " + value);
     }
 
     protected abstract T toName(String value);
@@ -59,8 +60,8 @@ public abstract class TreeGraphCreator<T> extends AbstractGraphCreator<T> {
     }
 
     @Override
-    protected boolean doRecurse(DependencyTarget target) {
-        Object name = target.getName();
+    protected boolean doRecurse(DependencyTarget<T> target) {
+        T name = target.getName();
         return visited.add(name);
     }
 

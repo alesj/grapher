@@ -104,7 +104,7 @@ public abstract class AbstractGraphCreator<T> implements GraphCreator<T> {
      * @param target the target to examine
      * @return true if we recurse, false otherwise
      */
-    protected boolean doRecurse(DependencyTarget target) {
+    protected boolean doRecurse(DependencyTarget<T> target) {
         return false; // by default we don't recurse
     }
 
@@ -189,7 +189,7 @@ public abstract class AbstractGraphCreator<T> implements GraphCreator<T> {
      * @return true if excluded, false otherwise
      */
     protected boolean isComponentExcluded(DependencyTarget<T> target, DependencyFilter<T> filter) {
-        return target == null || (filter != null && filter.accepts(target));
+        return target == null || (filter != null && filter.accepts(target) == false);
     }
 
     /**
