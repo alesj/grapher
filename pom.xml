@@ -32,6 +32,7 @@
     <properties>
         <version.javax.servlet>2.5</version.javax.servlet>
         <version.jgraph>5.12.4</version.jgraph>
+        <version.jgraph.layout>1.4.3</version.jgraph.layout>
         <version.batik>1.6</version.batik>
         <version.metainf>1.1</version.metainf>
         <version.org.jboss.common>2.2.17.GA</version.org.jboss.common>
@@ -126,10 +127,10 @@
             </dependency>
             <!-- Uncomment this + place JGraphLayout in your local repo -->
             <!--<dependency>-->
-            <!--<groupId>com.jgraph</groupId>-->
-            <!--<artifactId>jgraphlayout</artifactId>-->
-            <!--<version>1.4.3</version>-->
-            <!--<optional>true</optional>-->
+                <!--<groupId>com.jgraph</groupId>-->
+                <!--<artifactId>jgraphlayout</artifactId>-->
+                <!--<version>${version.jgraph.layout}</version>-->
+                <!--<optional>true</optional>-->
             <!--</dependency>-->
 
             <dependency>

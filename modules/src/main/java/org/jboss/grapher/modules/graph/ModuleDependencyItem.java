@@ -22,27 +22,29 @@
 
 package org.jboss.grapher.modules.graph;
 
-import org.jboss.grapher.map.GraphCreatorExt;
-import org.jboss.modules.Module;
+import org.jboss.grapher.graph.DependencyItem;
 import org.jboss.modules.ModuleIdentifier;
-import org.kohsuke.MetaInfServices;
 
 /**
- * This module.
+ * Module dependency item
  *
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
-@MetaInfServices(GraphCreatorExt.class)
-public class ThisModuleGrapherCreator extends SingleModuleGrapherCreator {
+public class ModuleDependencyItem implements DependencyItem<ModuleIdentifier> {
 
-    @Override
-    protected ModuleIdentifier toName(String value) {
-        Module callerModule = Module.getCallerModule();
-        log.info("Current module: " + callerModule);
-        return callerModule.getIdentifier();
+    private ModuleIdentifier identifier;
+
+    public ModuleDependencyItem(ModuleIdentifier identifier) {
+        if (identifier == null)
+            throw new IllegalArgumentException("Null module identifier");
+        this.identifier = identifier;
     }
 
-    public String extensionName() {
-        return "this-module";
+    public ModuleIdentifier getDependency() {
+        return identifier;
+    }
+
+    public String getWhenRequired() {
+        return null; // TODO
     }
 }

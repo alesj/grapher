@@ -21,7 +21,6 @@
  */
 package org.jboss.grapher.graph;
 
-import org.jboss.logging.Logger;
 import org.jgraph.JGraph;
 import org.jgraph.graph.AttributeMap;
 import org.jgraph.graph.ConnectionSet;
@@ -38,6 +37,8 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Abstract MC components renderer.
@@ -46,7 +47,7 @@ import java.util.Set;
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
 public abstract class AbstractGraphCreator<T> implements GraphCreator<T> {
-    protected Logger log = Logger.getLogger(getClass());
+    protected Logger log = Logger.getLogger(getClass().getName());
 
     /**
      * The graph component factory
@@ -122,8 +123,8 @@ public abstract class AbstractGraphCreator<T> implements GraphCreator<T> {
     @SuppressWarnings({"UnusedDeclaration"})
     protected void handleContext(HttpServletRequest request, DependencyType<T> dtype, Map<Object, GraphCell> cells, Set<Object> objects, Map attributes, ConnectionSet cs, DependencyTarget<T> target, DependencyFilter<T> filter) {
         if (isComponentExcluded(target, filter)) {
-            if (log.isTraceEnabled())
-                log.trace("Component is excluded [" + filter + "]: " + target);
+            if (log.isLoggable(Level.FINEST))
+                log.finest("Component is excluded [" + filter + "]: " + target);
 
             return;
         }
@@ -145,8 +146,8 @@ public abstract class AbstractGraphCreator<T> implements GraphCreator<T> {
                         dependant = getDependencyTarget(request, dependencyId);
                         if (dependant != null) {
                             if (isComponentExcluded(dependant, filter)) {
-                                if (log.isTraceEnabled())
-                                    log.trace("Component is excluded [" + filter + "]: " + dependant);
+                                if (log.isLoggable(Level.FINEST))
+                                    log.finest("Component is excluded [" + filter + "]: " + dependant);
 
                                 return;
                             }
@@ -228,8 +229,8 @@ public abstract class AbstractGraphCreator<T> implements GraphCreator<T> {
         }
         log.info("Vertices: " + v + ", Edges: " + e);
 
-        if (log.isTraceEnabled()) {
-            log.trace("Graph objects: " + Arrays.asList(cells));
+        if (log.isLoggable(Level.FINEST)) {
+            log.finest("Graph objects: " + Arrays.asList(cells));
         }
     }
 

@@ -24,13 +24,16 @@ package org.jboss.grapher.modules.graph;
 
 import org.jboss.grapher.graph.DependencyInfo;
 import org.jboss.grapher.graph.DependencyItem;
-import org.jboss.grapher.graph.DependencyTarget;
 import org.jboss.grapher.graph.DependencyType;
 import org.jboss.modules.Module;
 import org.jboss.modules.ModuleIdentifier;
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * Module dependency info
@@ -39,13 +42,47 @@ import java.util.Set;
  */
 public class ModuleDependencyInfo implements DependencyInfo<ModuleIdentifier> {
 
+    private static Logger log = Logger.getLogger(ModuleDependencyInfo.class.getName());
+    private static Method getDependencies;
+    private static Method getModuleIdentifier;
     private Module module;
+
+    static {
+        try {
+            getDependencies = Module.class.getDeclaredMethod("getDependencies");
+            getDependencies.setAccessible(true);
+
+            Class<?> clazz = ModuleDependencyInfo.class.getClassLoader().loadClass("org.jboss.modules.ModuleDependency");
+            getModuleIdentifier = clazz.getDeclaredMethod("getIdentifier");
+            getModuleIdentifier.setAccessible(true);
+        } catch (Throwable t) {
+            log.severe("Error using reflection: " + t);
+            throw new RuntimeException(t);
+        }
+    }
 
     public ModuleDependencyInfo(Module module) {
         this.module = module;
     }
 
     public Set<DependencyItem<ModuleIdentifier>> getDependencies(DependencyType type) {
-        return Collections.emptySet(); // TODO
+        try {
+            Object[] dependecies = (Object[]) getDependencies.invoke(module);
+            log.info("Dependencies: " + Arrays.toString(dependecies));
+            if (dependecies == null || dependecies.length == 0)
+                return Collections.emptySet();
+
+            Set<DependencyItem<ModuleIdentifier>> modules = new HashSet<DependencyItem<ModuleIdentifier>>(dependecies.length);
+            for (Object dependency : dependecies) {
+                Class<?> clazz = dependency.getClass();
+                if (clazz.getName().contains("ModuleDependency")) {
+                    ModuleIdentifier mi = (ModuleIdentifier) getModuleIdentifier.invoke(dependency);
+                    modules.add(new ModuleDependencyItem(mi));
+                }
+            }
+            return modules;
+        } catch (Throwable t) {
+            throw new RuntimeException(t);
+        }
     }
 }

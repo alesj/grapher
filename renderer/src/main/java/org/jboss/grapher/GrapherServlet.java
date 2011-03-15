@@ -132,6 +132,7 @@ public class GrapherServlet extends HttpServlet {
         if (trace)
             log.trace("Using dependency filter: " + filter);
 
+        @SuppressWarnings({"unchecked"})
         JGraph graph = creator.createGraph(request, dtype, filter);
 
         // apply layout

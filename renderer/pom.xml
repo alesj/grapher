@@ -46,10 +46,8 @@
         </dependency>
         <!-- Uncomment this + place JGraphLayout in your local repo -->
         <!--<dependency>-->
-        <!--<groupId>com.jgraph</groupId>-->
-        <!--<artifactId>jgraphlayout</artifactId>-->
-        <!--<version>1.4.3</version>-->
-        <!--<optional>true</optional>-->
+            <!--<groupId>com.jgraph</groupId>-->
+            <!--<artifactId>jgraphlayout</artifactId>-->
         <!--</dependency>-->
 
         <dependency>
