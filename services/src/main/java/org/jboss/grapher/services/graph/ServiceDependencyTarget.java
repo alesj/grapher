@@ -22,8 +22,8 @@
 
 package org.jboss.grapher.services.graph;
 
+import org.jboss.grapher.graph.AbstractDependencyTarget;
 import org.jboss.grapher.graph.DependencyInfo;
-import org.jboss.grapher.graph.DependencyTarget;
 import org.jboss.msc.service.ServiceController;
 import org.jboss.msc.service.ServiceName;
 
@@ -37,7 +37,7 @@ import java.util.Set;
  *
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
-public class ServiceDependencyTarget implements DependencyTarget<ServiceName> {
+public class ServiceDependencyTarget extends AbstractDependencyTarget<ServiceName> {
     private ServiceController controller;
     private DependencyInfo<ServiceName> info;
 

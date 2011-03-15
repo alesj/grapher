@@ -23,17 +23,24 @@ package org.jboss.grapher.graph;
 
 import org.jboss.util.graph.Vertex;
 
+import java.util.Set;
+
 /**
  * DependsOnMe dependency type.
  *
+ * @param <T> exact dependency name type
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
-public class DependsOnMeDependencyType extends TypedDependencyType {
+public class DependsOnMeDependencyType<T> extends TypedDependencyType<T> {
     public DependsOnMeDependencyType() {
     }
 
     public DependsOnMeDependencyType(Class<?> type) {
         super(type);
+    }
+
+    public Set<DependencyItem<T>> getDependencies(DependencyInfo<T> info) {
+        return info.getDependsOnMe();
     }
 
     public Object[] getEdgeOrder(Object owner, Object dependency) {

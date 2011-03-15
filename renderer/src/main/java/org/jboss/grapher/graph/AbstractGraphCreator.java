@@ -129,13 +129,9 @@ public abstract class AbstractGraphCreator<T> implements GraphCreator<T> {
             return;
         }
 
-        DependencyInfo<T> info = target.getDependencyInfo();
-        if (info == null)
-            return;
-
         GraphCell owner = getCell(cells, objects, target);
 
-        Set<DependencyItem<T>> items = dtype.getDependencies(info);
+        Set<DependencyItem<T>> items = target.getDependencies(dtype);
         if (items != null && items.isEmpty() == false) {
             for (DependencyItem<T> item : items) {
                 T dependencyId = item.getDependency();

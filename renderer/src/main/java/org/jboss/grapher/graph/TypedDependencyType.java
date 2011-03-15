@@ -21,14 +21,13 @@
  */
 package org.jboss.grapher.graph;
 
-import java.util.Set;
-
 /**
  * IDependOn dependency type.
  *
+ * @param <T> exact dependency name type
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
-public abstract class TypedDependencyType implements DependencyType {
+public abstract class TypedDependencyType<T> implements DependencyType<T> {
     private Class<?> type;
 
     protected TypedDependencyType() {
@@ -45,9 +44,5 @@ public abstract class TypedDependencyType implements DependencyType {
      */
     protected Class<?> getType() {
         return type;
-    }
-
-    public Set<DependencyItem> getDependencies(DependencyInfo info) {
-        return info.getDependencies(this);
     }
 }

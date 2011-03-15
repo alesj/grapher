@@ -38,7 +38,7 @@ public interface DependencyType<T> {
      * @param info the dependency info
      * @return dependency items
      */
-    Set<DependencyItem<T>> getDependencies(DependencyInfo info);
+    Set<DependencyItem<T>> getDependencies(DependencyInfo<T> info);
 
     /**
      * Get edge order.

@@ -47,7 +47,8 @@ public interface DependencyTarget<T> {
     /**
      * Get dependency info.
      *
+     * @param type the dependency type
      * @return the dependency info
      */
-    DependencyInfo<T> getDependencyInfo();
+    Set<DependencyItem<T>> getDependencies(DependencyType<T> type);
 }

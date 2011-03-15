@@ -24,7 +24,6 @@ package org.jboss.grapher.modules.graph;
 
 import org.jboss.grapher.graph.DependencyInfo;
 import org.jboss.grapher.graph.DependencyItem;
-import org.jboss.grapher.graph.DependencyType;
 import org.jboss.modules.Module;
 import org.jboss.modules.ModuleIdentifier;
 
@@ -64,7 +63,7 @@ public class ModuleDependencyInfo implements DependencyInfo<ModuleIdentifier> {
         this.module = module;
     }
 
-    public Set<DependencyItem<ModuleIdentifier>> getDependencies(DependencyType type) {
+    public Set<DependencyItem<ModuleIdentifier>> getIDependOn() {
         try {
             Object[] dependecies = (Object[]) getDependencies.invoke(module);
             if (dependecies == null || dependecies.length == 0)
@@ -82,5 +81,13 @@ public class ModuleDependencyInfo implements DependencyInfo<ModuleIdentifier> {
         } catch (Throwable t) {
             throw new RuntimeException(t);
         }
+    }
+
+    public Set<DependencyItem<ModuleIdentifier>> getDependsOnMe() {
+        return null; // TODO
+    }
+
+    public Set<DependencyItem<ModuleIdentifier>> getUnresolved() {
+        return null; // TODO
     }
 }

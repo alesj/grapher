@@ -24,7 +24,6 @@ package org.jboss.grapher.services.graph;
 
 import org.jboss.grapher.graph.DependencyInfo;
 import org.jboss.grapher.graph.DependencyItem;
-import org.jboss.grapher.graph.DependencyType;
 import org.jboss.msc.service.ServiceContainer;
 import org.jboss.msc.service.ServiceName;
 
@@ -45,10 +44,18 @@ public class ServiceDependencyInfo implements DependencyInfo<ServiceName> {
         this.container = container;
     }
 
-    public Set<DependencyItem<ServiceName>> getDependencies(DependencyType<ServiceName> serviceNameDependencyType) {
+    public Set<DependencyItem<ServiceName>> getIDependOn() {
         Set<DependencyItem<ServiceName>> dependencies = new HashSet<DependencyItem<ServiceName>>();
         for (ServiceName sn : container.getDependencies())
             dependencies.add(new ServiceDependencyItem(sn, null));
         return dependencies;
+    }
+
+    public Set<DependencyItem<ServiceName>> getDependsOnMe() {
+        return null; // TODO
+    }
+
+    public Set<DependencyItem<ServiceName>> getUnresolved() {
+        return null; // TODO
     }
 }

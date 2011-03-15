@@ -30,12 +30,12 @@ import java.util.Set;
  *
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
-public class UnresolvedDependencyType implements DependencyType {
+public class UnresolvedDependencyType<T> implements DependencyType<T> {
     public UnresolvedDependencyType() {
     }
 
-    public Set<DependencyItem> getDependencies(DependencyInfo info) {
-        return info.getDependencies(this);
+    public Set<DependencyItem<T>> getDependencies(DependencyInfo<T> info) {
+        return info.getUnresolved();
     }
 
     public Object[] getEdgeOrder(Object owner, Object dependency) {

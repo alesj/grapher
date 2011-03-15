@@ -22,8 +22,8 @@
 
 package org.jboss.grapher.modules.graph;
 
+import org.jboss.grapher.graph.AbstractDependencyTarget;
 import org.jboss.grapher.graph.DependencyInfo;
-import org.jboss.grapher.graph.DependencyTarget;
 import org.jboss.modules.Module;
 import org.jboss.modules.ModuleIdentifier;
 
@@ -35,7 +35,7 @@ import java.util.Set;
  *
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
-public class ModuleDependencyTarget implements DependencyTarget<ModuleIdentifier> {
+public class ModuleDependencyTarget extends AbstractDependencyTarget<ModuleIdentifier> {
 
     private Module module;
     private DependencyInfo<ModuleIdentifier> info;

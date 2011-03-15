@@ -31,10 +31,23 @@ import java.util.Set;
  */
 public interface DependencyInfo<T> {
     /**
-     * Get dependencies.
+     * Get dependencies I depend on.
      *
-     * @param type the dependency type
      * @return the dependecies
      */
-    Set<DependencyItem<T>> getDependencies(DependencyType<T> type);
+    Set<DependencyItem<T>> getIDependOn();
+
+    /**
+     * Get dependencies that depend on me.
+     *
+     * @return the dependecies
+     */
+    Set<DependencyItem<T>> getDependsOnMe();
+
+    /**
+     * Get unresolved dependencies.
+     *
+     * @return the unresolved dependecies
+     */
+    Set<DependencyItem<T>> getUnresolved();
 }

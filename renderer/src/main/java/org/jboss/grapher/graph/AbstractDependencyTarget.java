@@ -21,33 +21,27 @@
  */
 package org.jboss.grapher.graph;
 
-import org.jboss.util.graph.Vertex;
-
+import java.util.Collections;
 import java.util.Set;
 
 /**
- * IDependOn dependency type.
+ * Dependency target.
  *
- * @param <T> exact dependency name type
+ * @param <T> exact name type
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
-public class IDependOnDependencyType<T> extends TypedDependencyType<T> {
-    public IDependOnDependencyType() {
-    }
+public abstract class AbstractDependencyTarget<T> implements DependencyTarget<T> {
+    /**
+     * Get dependency info.
+     *
+     * @return the dependency info
+     */
+    protected abstract DependencyInfo<T> getDependencyInfo();
 
-    public IDependOnDependencyType(Class<?> type) {
-        super(type);
-    }
+    public Set<DependencyItem<T>> getDependencies(DependencyType<T> type) {
+        if (type == null)
+            return Collections.emptySet();
 
-    public Set<DependencyItem<T>> getDependencies(DependencyInfo<T> info) {
-        return info.getIDependOn();
-    }
-
-    public Object[] getEdgeOrder(Object owner, Object dependency) {
-        return new Object[]{owner, dependency};
-    }
-
-    public boolean isRoot(Vertex vertex) {
-        return vertex.getOutgoingEdgeCount() == 0;
+        return type.getDependencies(getDependencyInfo());
     }
 }
