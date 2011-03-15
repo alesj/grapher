@@ -26,6 +26,7 @@
         <module>renderer</module>
         <module>modules</module>
         <module>services</module>
+        <module>mc</module>
         <module>dist</module>
     </modules>
 
@@ -38,6 +39,7 @@
         <version.org.jboss.common>2.2.17.GA</version.org.jboss.common>
         <version.org.jboss.modules>1.0.0.Beta15</version.org.jboss.modules>
         <version.org.jboss.msc>1.0.0.Beta6</version.org.jboss.msc>
+        <version.org.jboss.deployers>2.2.0.GA</version.org.jboss.deployers>
     </properties>
 
     <build>
@@ -162,6 +164,12 @@
                 <groupId>org.jboss.msc</groupId>
                 <artifactId>jboss-msc</artifactId>
                 <version>${version.org.jboss.msc}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.deployers</groupId>
+                <artifactId>jboss-deployers-vfs</artifactId>
+                <version>${version.org.jboss.deployers}</version>
             </dependency>
         </dependencies>
 
