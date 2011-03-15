@@ -5,4 +5,5 @@
 renderer/target/
 modules/target/
 services/target/
+mc/target/
 dist/target/
